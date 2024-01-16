@@ -25,10 +25,8 @@
 		//JSFunction클래스의 정적메소드 호출 
 		JSFunction.alertLocation("삭제되었습니다.", "memberlist.jsp", out);
 	}else {
-		//JSFunction클래스의 정적메소드 호출 
 		JSFunction.alertLocation("실패했습니다.", "memberlist.jsp", out);
 	}
-	//dao의 부모 클래스 JDBCconnect의 close()메소드 호출
 	dao.close();
 %>
 </body>
