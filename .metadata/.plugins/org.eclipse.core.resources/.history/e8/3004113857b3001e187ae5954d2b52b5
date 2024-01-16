@@ -1,0 +1,22 @@
+package member;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+
+import common.JDBCConnect;
+
+public class MemberDAO extends JDBCConnect{
+	public MemberDAO(ServletContext application) {
+		super(application);
+	}
+	//게시글 목록 가져오기
+	public List<MemberDTO> selectList(){
+		
+			
+		
+		
+	}
+}

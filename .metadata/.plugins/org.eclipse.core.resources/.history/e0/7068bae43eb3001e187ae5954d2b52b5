@@ -1,0 +1,38 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="common.JDBCConnect"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String id = request.getParameter("id");
+	JDBCConnect jdbc = new JDBCConnect();
+	String query ="select * from member where id=?";
+	PreparedStatement psmt = jdbc.con.prepareStatement(query);
+	psmt.setString(1, id);
+	//쿼리 실행
+	ResultSet rs = psmt.executeQuery();
+	String userid ="";
+	String userpw = "";
+	String username = "";
+	if(rs.next()){
+		userid = rs.getString("id");
+		userpw = rs.getString("pass");
+		username = rs.getString("name");
+	}
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>수정하기</h2>
+	<form method="post" action="edit_process.jsp">
+		<p>id <input type="text" name="id" /></p>
+		<p>password <input type="text" name="pw" /></p>
+		<p>name <input type="text" name="username" /></p>
+		<p><input type="submit" /></p>
+	</form>
+</body>
+</html>

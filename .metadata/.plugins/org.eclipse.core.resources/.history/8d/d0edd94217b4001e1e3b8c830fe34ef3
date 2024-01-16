@@ -1,0 +1,55 @@
+<%@page import="board.BoardDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="board.BoardDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	BoardDAO dao = new BoardDAO(application);
+	List<BoardDTO> boardlist = dao.selectList();
+	dao.close();
+%>
+<h2>목록보기</h2>
+<table>
+		<tr>
+			<td>번호</td>
+			<td>제목</td>
+			<td>작성자</td>
+			<td>조회수</td>
+			<td>작성일</td>
+		</tr>
+		<%
+		if(boardlist.isEmpty()){
+		%>
+		<tr>
+			<td colspan="5">게시글이 없습니다.</td>
+		</tr>
+		<% 	
+		}else {
+			out.println("Aaa");
+			for(BoardDTO dto : boardlist){
+				%>
+				<tr>
+					<td><%= dto.getNum() %></td>
+					<td><%= dto.getTitle() %></td>
+					<td><%= dto.getId() %></td>
+					<td><%= dto.getVisitcount() %></td>
+					<td><%= dto.getPostdate() %></td>
+				</tr>
+				<%
+				
+			}
+		
+			
+		}
+		%>
+	</table>
+
+</body>
+</html>

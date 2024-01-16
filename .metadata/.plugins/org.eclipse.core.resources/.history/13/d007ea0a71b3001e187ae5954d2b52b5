@@ -1,0 +1,47 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="common.JDBCConnect"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//전송받은 데이터
+	String id = request.getParameter("id");
+	//1.오라클접속
+	JDBCConnect jdbc = new JDBCConnect();
+	//2.쿼리작성
+	String query ="select * from member where id=?";
+	//3.동적쿼리객체 생성
+	PreparedStatement psmt = jdbc.con.prepareStatement(query);
+	//4.인파라미터 값 지정
+	psmt.setString(1, id);
+	//5.쿼리 실행
+	ResultSet rs = psmt.executeQuery();
+	String userid ="";
+	String userpw = "";
+	String username = "";
+	//6.결과값을 변수에 할당
+	if(rs.next()){
+		userid = rs.getString("id");
+		userpw = rs.getString("pass");
+		username = rs.getString("name");
+	}
+	jdbc.close();
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>수정하기</h2>
+	<form method="post" action="edit_process.jsp">
+		<input type="hidden" name="oldid" value="<%=userid%>" />
+		<p>id <input type="text" name="id" value="<%=userid%>"/></p>
+		<p>password <input type="text" name="pw" value="<%=userpw%>"/></p>
+		<p>name <input type="text" name="username" value="<%=username%>"/></p>
+		<p><input type="submit" value="수정"/></p>
+	</form>
+</body>
+</html>
