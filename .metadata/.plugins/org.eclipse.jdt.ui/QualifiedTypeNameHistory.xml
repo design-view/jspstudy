@@ -11,7 +11,8 @@
     <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="member.MemberDTO"/>
     <fullyQualifiedTypeName name="javax.servlet.jsp.JspWriter"/>
     <fullyQualifiedTypeName name="common.JSFunction"/>
+    <fullyQualifiedTypeName name="board.BoardDTO"/>
+    <fullyQualifiedTypeName name="member.MemberDTO"/>
 </qualifiedTypeNameHistroy>

@@ -132,6 +132,8 @@ public class MemberDAO extends JDBCConnect{
 	public MemberDTO logincheck(String id, String pw) {
 		MemberDTO dto = new MemberDTO();
 		String sql = "select * from member where id=? and pass=?";
+		System.out.println("아이디" + id);
+		System.out.println("패스워드" +pw);
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, id);
@@ -140,11 +142,13 @@ public class MemberDAO extends JDBCConnect{
 			if(rs.next()) {
 				dto.setId(rs.getString("id"));
 				dto.setPass(rs.getString("pass"));
+				dto.setName(rs.getString("name"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(dto.getId());
 		return dto;
 	}
 	

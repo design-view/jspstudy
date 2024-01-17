@@ -1,0 +1,14 @@
+<%@page import="member.MemberDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	//MemberDAO객체 생성
+	//오라클접속 (MemberDAO클래스는 JDBCConnect상속받고 있음)
+	//MemberDAO객체가 생성될때 JDBCCennect객체도 생성됨 
+	MemberDAO dao = new MemberDAO(application);
+	String userId = request.getParameter("uesrId");
+	String userPw = request.getParameter("userPw");
+	MemberDAO dto = dao.logincheck(userId,userPw);
+	
+
+%>

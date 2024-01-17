@@ -1,0 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
+<div>
+	<h2>게시글보기페이지입니다.</h2>
+</div>
+<%@ include file="footer.jsp" %>
