@@ -1,11 +1,10 @@
-<%@page import="common.JSFunction"%>
 <%@page import="member.MemberDTO"%>
 <%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%	
 	//요청데이터 한글인코딩 utf-8로지정
-	//request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
 	//요청 데이터 확인
 	String id = request.getParameter("userId");
 	String pw = request.getParameter("userPw");
@@ -15,25 +14,4 @@
 	MemberDAO dao = new MemberDAO(application);
 	MemberDTO dto =  dao.logincheck(id, pw);
 	out.print(dto.getId());
-	//dto.getId()메소드 호출시 null값이 아니면 로그인 된걸로 처리
-	if(dto.getId()!=null){
-		session.setAttribute("userId", dto.getId());
-		session.setAttribute("userName", dto.getName());
-		JSFunction.alertLocation("로그인 성공", "../login.jsp", out);
-	}else {
-		JSFunction.alertLocation("로그인 실패", "../login.jsp", out);
-	}
 %>
-
-
-
-
-
-
-
-
-
-
-
-
-

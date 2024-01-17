@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <%	
 	//요청데이터 한글인코딩 utf-8로지정
-	//request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
 	//요청 데이터 확인
 	String id = request.getParameter("userId");
 	String pw = request.getParameter("userPw");
@@ -20,20 +20,5 @@
 		session.setAttribute("userId", dto.getId());
 		session.setAttribute("userName", dto.getName());
 		JSFunction.alertLocation("로그인 성공", "../login.jsp", out);
-	}else {
-		JSFunction.alertLocation("로그인 실패", "../login.jsp", out);
 	}
 %>
-
-
-
-
-
-
-
-
-
-
-
-
-

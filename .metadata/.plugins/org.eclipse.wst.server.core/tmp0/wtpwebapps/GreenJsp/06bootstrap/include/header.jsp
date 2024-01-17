@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String isLogin = "logout";
+	if(session.getAttribute("userId")!=null){
+		isLogin = "login";
+	}	
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +27,19 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="login.jsp">로그인</a>
+      <% 
+      if(isLogin.equals("logout")) { 
+      %>
+      <a class="nav-link" href="login.jsp">로그인</a>
+      <%  
+      } 
+      else {
+      %>
+      <a class="nav-link" href="process/logout_process.jsp">로그아웃</a>
+      <%	  
+      }
+      %>
+        
       </li>
       <li class="nav-item">
         <a class="nav-link" href="join.jsp">회원가입</a>

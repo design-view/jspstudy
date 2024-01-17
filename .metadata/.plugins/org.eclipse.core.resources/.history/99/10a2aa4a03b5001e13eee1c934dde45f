@@ -27,19 +27,7 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-      <% 
-      if(isLogin.equals("logout")) { 
-      %>
-      <a class="nav-link" href="login.jsp">로그인</a>
-      <%  
-      } 
-      else {
-      %>
-      <a class="nav-link" href="process/logout_process.jsp">로그아웃</a>
-      <%	  
-      }
-      %>
-        
+        <a class="nav-link" href="login.jsp">로그인</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="join.jsp">회원가입</a>

@@ -19,9 +19,9 @@
 	if(dto.getId()!=null){
 		session.setAttribute("userId", dto.getId());
 		session.setAttribute("userName", dto.getName());
-		JSFunction.alertLocation("로그인 성공", "../login.jsp", out);
+		//JSFunction.alertLocation("로그인 성공", "../login.jsp", out);
 	}else {
-		JSFunction.alertLocation("로그인 실패", "../login.jsp", out);
+		//JSFunction.alertLocation("로그인 실패", "../login.jsp", out);
 	}
 %>
 
