@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <script>
 	//회원가입시 아이디 중복체크를 해야한다!!!
 	//아이디중복체크를 하지않으면 전송할수 없음
@@ -64,4 +64,4 @@
 		</form>
 	</div>
 </div>
-<%@ include file="include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>

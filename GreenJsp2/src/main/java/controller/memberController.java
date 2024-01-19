@@ -20,11 +20,11 @@ public class memberController extends HttpServlet {
     public memberController() {
         super(); 
     }
-	
+	//get요청
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
+	//post요청
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("통신요청옴");
 		//입력스트립 생성 

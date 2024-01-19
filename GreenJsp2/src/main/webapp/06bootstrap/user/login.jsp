@@ -1,6 +1,7 @@
+<%@page import="member.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 
 <div>
 	<h2>로그인페이지입니다.</h2>
@@ -9,7 +10,7 @@
 if(session.getAttribute("userId")==null) {
 %>
 	<div>
-		<form action="process/login_process.jsp" method="post">
+		<form action="/GreenJsp2/user?cmd=login_process" method="post">
 		  <div class="form-group">
 		    아이디
 		    <input type="text" class="form-control" 
@@ -39,4 +40,4 @@ if(session.getAttribute("userId")==null) {
 %>
 	
 </div>
-<%@ include file="include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>

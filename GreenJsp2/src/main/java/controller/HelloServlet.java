@@ -54,17 +54,26 @@ public class HelloServlet extends HttpServlet {
 			BufferedReader br =  request.getReader();
 			//한줄씩 읽어서 리턴 
 			String input;
+			//한줄씩 읽어서 input에 할당
+			//input이 null이 아니면 코드실행
 			while((input=br.readLine())!=null) {
 				System.out.println(input);
 			}
+			//출력스트림
 			out.print("ok");
+			//버퍼비우기
 			out.flush();
+			//출력스트림 닫기
 			out.close();
 		}else {
+			//요청 파라미터 값 title에 할당
 			String title = request.getParameter("title");
+			//요청 파라미터 값 price에 할당
 			String price = request.getParameter("price");
 			out.print("{\"title\": "+title+",\"price\":"+price+"}");
+			//버퍼비우기
 			out.flush();
+			//출력스트림 닫기
 			out.close();
 		}
 		

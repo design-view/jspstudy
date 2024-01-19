@@ -1,9 +1,0 @@
-package common;
-
-import java.sql.Connection;
-
-public class JDBCConnect {
-	//데이터베이스연결
-	public Connection con;
-
-}

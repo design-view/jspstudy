@@ -15,4 +15,7 @@
     <fullyQualifiedTypeName name="common.JSFunction"/>
     <fullyQualifiedTypeName name="board.BoardDTO"/>
     <fullyQualifiedTypeName name="member.MemberDTO"/>
+    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="org.apache.coyote.BadRequestException"/>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 </qualifiedTypeNameHistroy>

@@ -27,24 +27,29 @@
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
-      <li class="nav-item">
+     
       <% 
       if(isLogin.equals("logout")) { 
       %>
-      <a class="nav-link" href="login.jsp">로그인</a>
+      <li class="nav-item">
+      <a class="nav-link" href="/GreenJsp2/user?cmd=login">로그인</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/GreenJsp2/user?cmd=join">회원가입</a>
+      </li>
       <%  
       } 
       else {
       %>
-      <a class="nav-link" href="process/logout_process.jsp">로그아웃</a>
+      <li class="nav-item">
+      <a class="nav-link" href="/GreenJsp2/user?cmd=logout">로그아웃</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/GreenJsp2/user?cmd=edit">회원정보수정</a>
+      </li>
       <%	  
       }
       %>
-        
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="join.jsp">회원가입</a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="boardlist.jsp">게시글보기</a>
       </li>    
