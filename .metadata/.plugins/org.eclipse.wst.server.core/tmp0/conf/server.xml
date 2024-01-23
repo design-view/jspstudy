@@ -160,7 +160,11 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="E:\01-STUDY\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="E:\01-STUDY\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\GreenJsp2" path="/GreenJsp2" reloadable="true" source="org.eclipse.jst.jee.server:GreenJsp2"/></Host>
+      <Context docBase="E:\01-STUDY\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="E:\01-STUDY\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\GreenJsp2" path="/GreenJsp2" reloadable="true" source="org.eclipse.jst.jee.server:GreenJsp2">
+<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/myoracle" password="green1234" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="greenjsp"/>
+</Context><Context docBase="E:\01-STUDY\jspstudy\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\AjaxTest" path="/AjaxTest" reloadable="true" source="org.eclipse.jst.jee.server:AjaxTest">
+<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/myoracle" password="green1234" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="greenjsp"/>
+</Context></Host>
     </Engine>
   </Service>
 </Server>

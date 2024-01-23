@@ -16,20 +16,20 @@
 	request.setCharacterEncoding("utf-8");
 	String userid = request.getParameter("id");
 	//dao생성 
-	MemberDAO dao = new MemberDAO(application);
+	MemberDAO dao = new MemberDAO();
 	//dao객체의 deleteMember(userid)호출
 	//실행결과를 result에 담기
 	int result = dao.deleteMember(userid);
 	//result가 1이면 실행 
 	if(result==1){
 		//JSFunction클래스의 정적메소드 호출 
-		JSFunction.alertLocation("삭제되었습니다.", "memberlist.jsp", out);
+		JSFunction.alertLocation("삭제되었습니다.", "memberlist.jsp", response);
 	}else {
 		//JSFunction클래스의 정적메소드 호출 
-		JSFunction.alertLocation("실패했습니다.", "memberlist.jsp", out);
+		JSFunction.alertLocation("실패했습니다.", "memberlist.jsp", response);
 	}
-	//dao의 부모 클래스 JDBCconnect의 close()메소드 호출
-	dao.close();
+	
+	
 %>
 </body>
 </html>

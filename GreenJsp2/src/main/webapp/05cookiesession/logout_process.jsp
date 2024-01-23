@@ -9,6 +9,6 @@
 	//세션의 모든속성제거
 	//session.invalidate();
 	//페이지이동
-	JSFunction.alertLocation("로그아웃되었습니다.", "sessionlogin2.jsp", out);
+	JSFunction.alertLocation("로그아웃되었습니다.", "sessionlogin2.jsp", response);
 	//response.sendRedirect("sessionlogin2.jsp");
 %>

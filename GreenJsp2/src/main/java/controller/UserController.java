@@ -31,8 +31,7 @@ public class UserController extends HttpServlet {
     	HttpSession session = req.getSession();
     	//*****응답 컨텐츠타입 지정 html형태로 응답해!!!!
 		res.setContentType("text/html; charset=utf-8");
-		//출력스트립 생성 
-		PrintWriter out =  res.getWriter();
+		
     	//회원가입요청
     	if(cmd.equals("join")) {
     		System.out.println("join요청");
@@ -52,7 +51,7 @@ public class UserController extends HttpServlet {
     		session.removeAttribute("userId");
     		session.removeAttribute("userName");
     		//JSFunction클래스의 정적메소드 alertLocation()호출
-    		JSFunction.alertLocation("로그아웃되셨습니다.", "/GreenJsp2/user?cmd=login", out);
+    		JSFunction.alertLocation("로그아웃되셨습니다.", "/GreenJsp2/user?cmd=login", res);
     	//회원정보수정 요청
     	}else if(cmd.equals("edit")) {
     		System.out.println("edit요청");
@@ -67,16 +66,34 @@ public class UserController extends HttpServlet {
     		//form태그에 담긴값 조회 userPw:input의 name속성명
     		String userpw = req.getParameter("userPw");
     		//DAO객체 생성
-    		MemberDAO dao = new MemberDAO(getServletContext());
+    		MemberDAO dao = new MemberDAO();
     		//DTO객체 생성  logincheck()메소드 호출해서 리턴되는 값으로 할당
     		MemberDTO dto = dao.logincheck(userid, userpw);
     		//dto객체의 id값이 null이 아니면 session속성추가하기
     		if(dto.getId()!=null) {
     			session.setAttribute("userId", dto.getId());
     			session.setAttribute("userName", dto.getName());
+    			//JSFunction클래스의 정적메소드 alertLocation()호출
+        		JSFunction.alertLocation("로그인되었습니다.", "/GreenJsp2/user?cmd=login", res);
+    		}else {
+    			JSFunction.alertLocation("로그인 실패", "/GreenJsp2/user?cmd=login", res);
     		}
-    		//JSFunction클래스의 정적메소드 alertLocation()호출
-    		JSFunction.alertLocation("로그인되었습니다.", "/GreenJsp2/user?cmd=login", out);
+    		
+    	}
+    	//회원가입 post요청
+    	else if(cmd.equals("join_process")) {
+    		System.out.println("회원가입처리요청");
+    		MemberDAO dao = new MemberDAO();
+    		String id = req.getParameter("userId");
+    		String pw = req.getParameter("userPw");
+    		String name = req.getParameter("userName");
+    		int result = dao.insertMember(id, pw, name);
+    		if(result==1) {
+    			JSFunction.alertLocation("회원가입완료", "/GreenJsp2/06bootstrap/user/login.jsp", res);
+    		}else {
+    			JSFunction.alertLocation("회원가입실패", "/GreenJsp2/06bootstrap/user/join.jsp", res);
+    		}
+ 	
     	}
     }
 	//get요청

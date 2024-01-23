@@ -33,7 +33,7 @@ public class memberController extends HttpServlet {
 		//한줄씩읽음 
 		String userid = br.readLine();
 		//MemberDAO생성
-		MemberDAO dao = new MemberDAO(getServletContext());
+		MemberDAO dao = new MemberDAO();
 		int result = dao.findByid(userid);
 		//출력스트입
 		PrintWriter out = response.getWriter();

@@ -42,7 +42,7 @@
 	<h2>회원가입페이지입니다.</h2>
 	<div>
 		<!-- submit이 발생하면 valid()호출 리턴값이 true일때만전송됨 -->
-		<form action="process/join_process.jsp" method="post"
+		<form action="/GreenJsp2/user?cmd=join_process" method="post"
 		onsubmit="return valid()">
 		  <div class="form-group">
 		    아이디
@@ -60,7 +60,7 @@
 		    <input type="text" class="form-control" 
 		    placeholder="Enter 이름" name="userName" required>
 		  </div>
-  		  <button type="submit" class="btn btn-primary">로그인</button>
+  		  <button type="submit" class="btn btn-primary">회원가입</button>
 		</form>
 	</div>
 </div>

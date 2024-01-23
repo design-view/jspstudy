@@ -1,20 +1,26 @@
 package member;
 
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspWriter;
 
+import common.DBConnection;
 import common.JDBCConnect;
 import common.JSFunction;
 
-public class MemberDAO extends JDBCConnect{
-	public MemberDAO(ServletContext application) {
-		super(application);
-	}
+public class MemberDAO {
+	Connection con = DBConnection.getConnection();
+	Statement stmt;
+	ResultSet rs;
+	PreparedStatement psmt;
 	//게시글 목록 가져오기
 	public List<MemberDTO> selectList(){
 		//쿼리작성
@@ -42,6 +48,11 @@ public class MemberDAO extends JDBCConnect{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			//con이 null이아니고 stmt가 null이 아니고 rs가 null이 아닐때
+			if(con!=null && stmt !=null && rs != null ) {
+				DBConnection.close(con, stmt, rs);
+			}
 		}
 		return memberlist;						
 	}
@@ -67,6 +78,11 @@ public class MemberDAO extends JDBCConnect{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			//con이 null이아니고 stmt가 null이 아니고 rs가 null이 아닐때
+			if(con!=null && psmt !=null && rs != null ) {
+				DBConnection.close(con, psmt, rs);
+			}
 		}
 		return member;
 	}
@@ -86,6 +102,11 @@ public class MemberDAO extends JDBCConnect{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			//con이 null이아니고 stmt가 null이 아닐때
+			if(con!=null && stmt !=null) {
+				DBConnection.close(con, stmt);
+			}
 		}
 		return result;
 		
@@ -105,10 +126,15 @@ public class MemberDAO extends JDBCConnect{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			//con이 null이아니고 stmt가 null이 아닐때
+			if(con!=null && psmt !=null) {
+				DBConnection.close(con, psmt);
+			}
 		}
 		return result;
 	}
-	//게시글 추가하기
+	//게시글 추가하기(회원가입 )
 	public int insertMember(String id, String pass, String name) {
 		//쿼리문 작성
 		String sql = "insert into member(id,pass,name) values(?,?,?)";
@@ -125,6 +151,11 @@ public class MemberDAO extends JDBCConnect{
 		}
 		catch(Exception e){
 
+		}finally {
+			//con이 null이아니고 stmt가 null이 아닐때
+			if(con!=null && psmt !=null) {
+				DBConnection.close(con, psmt);
+			}
 		}
 		return result;
 	}
@@ -166,6 +197,11 @@ public class MemberDAO extends JDBCConnect{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			//con이 null이아니고 stmt가 null이 아니고 rs가 null이 아닐때
+			if(con!=null && psmt !=null && rs != null ) {
+				DBConnection.close(con, psmt, rs);
+			}
 		}
 		
 		return result;

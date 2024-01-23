@@ -8,7 +8,7 @@
 	//MemberDAO객체 생성
 	//오라클접속 (MemberDAO클래스는 JDBCConnect상속받고 있음)
 	//MemberDAO객체가 생성될때 JDBCCennect객체도 생성됨 
-	MemberDAO dao = new MemberDAO(application);
+	MemberDAO dao = new MemberDAO();
 	String userId = request.getParameter("userId");
 	String userPw = request.getParameter("userPw");
 	MemberDTO dto = dao.logincheck(userId,userPw);
@@ -25,10 +25,10 @@
 		session.setAttribute("userName", dto.getName());
 		//페이지이동 sessionlogin2.jsp
 		//경고창 출력후 페이지 이동 
-		JSFunction.alertLocation("로그인되었습니다.", "sessionlogin2.jsp", out);
+		JSFunction.alertLocation("로그인되었습니다.", "sessionlogin2.jsp", response);
 	}else {
 		//경고창 출력후 페이지 이동 
-		JSFunction.alertLocation("로그인 실패", "sessionlogin2.jsp", out);
+		JSFunction.alertLocation("로그인 실패", "sessionlogin2.jsp", response);
 	}
 
 %>

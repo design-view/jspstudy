@@ -1,7 +1,0 @@
-package member;
-
-import common.JDBCConnect;
-
-public class MemberDAO extends JDBCConnect{
-
-}

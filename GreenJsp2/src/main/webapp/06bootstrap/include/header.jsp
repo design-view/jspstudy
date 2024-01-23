@@ -37,6 +37,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/GreenJsp2/user?cmd=join">회원가입</a>
       </li>
+      
       <%  
       } 
       else {
@@ -47,11 +48,14 @@
        <li class="nav-item">
         <a class="nav-link" href="/GreenJsp2/user?cmd=edit">회원정보수정</a>
       </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/GreenJsp2/board?cmd=write">게시글작성</a>
+      </li>
       <%	  
       }
       %>
       <li class="nav-item">
-        <a class="nav-link" href="boardlist.jsp">게시글보기</a>
+        <a class="nav-link" href="/GreenJsp2/board?cmd=list">게시글보기</a>
       </li>    
     </ul>
   </div>  

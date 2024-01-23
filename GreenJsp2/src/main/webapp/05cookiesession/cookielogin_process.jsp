@@ -9,7 +9,7 @@
 	String pw = request.getParameter("userPw");
 	String idsave = request.getParameter("idsave");
 	
-	MemberDAO dao = new MemberDAO(application);
+	MemberDAO dao = new MemberDAO();
 	MemberDTO dto = dao.logincheck(id, pw);
 	//id "green" pw "1234" 
 	
@@ -24,8 +24,8 @@
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		JSFunction.alertLocation("로그인 되었습니다.", "cookielogin.jsp", out);
+		JSFunction.alertLocation("로그인 되었습니다.", "cookielogin.jsp", response);
 	}else {
-		JSFunction.alertLocation("로그인되지 않았습니다.", "cookielogin.jsp", out);
+		JSFunction.alertLocation("로그인되지 않았습니다.", "cookielogin.jsp", response);
 	}
 %>

@@ -14,15 +14,15 @@
 	String name = request.getParameter("username");
 	
 	//오라클 접속
-	MemberDAO dao = new MemberDAO(application);
+	MemberDAO dao = new MemberDAO();
 	
 	//쿼리실행
 	int result = dao.updateMember(id, pw, name, oldid);
 	if(result==1){
-		JSFunction.alertLocation("회원정보가 수정되었습니다.","memberlist.jsp", out);
+		JSFunction.alertLocation("회원정보가 수정되었습니다.","memberlist.jsp", response);
 	}else {
-		JSFunction.alertLocation("수정에 문제가 있습니다.","memberlist.jsp", out);
+		JSFunction.alertLocation("수정에 문제가 있습니다.","memberlist.jsp", response);
 	} 
-	dao.close();
+	
 	
 %>
