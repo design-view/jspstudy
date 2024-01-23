@@ -14,12 +14,13 @@ import common.DBConnection;
 import common.JDBCConnect;
 
 public class BoardDAO3  {
-	Connection con = DBConnection.getConnection();
+	Connection con;
 	Statement stmt;
 	PreparedStatement psmt;
 	ResultSet rs;
 	//게시글 목록 가져오기
 	public List<BoardDTO> selectList(){
+		con=DBConnection.getConnection();
 		List<BoardDTO> boardlist = new ArrayList<BoardDTO>();
 		String query = "select * from board";
 		try {
@@ -32,6 +33,7 @@ public class BoardDAO3  {
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
 				dto.setPostdate(rs.getDate("postdate"));
+				dto.setVisitcount(rs.getInt("visitcount"));
 				boardlist.add(dto);
 			}
 		} catch (Exception e) {
@@ -46,6 +48,7 @@ public class BoardDAO3  {
 	}
 	//게시글 하나 가져오기
 	public BoardDTO getBoard(int num) {
+		con=DBConnection.getConnection();
 		BoardDTO dto = new BoardDTO();
 		try {
 			String query = "select * from board where num=?";
@@ -58,6 +61,7 @@ public class BoardDAO3  {
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
 				dto.setPostdate(rs.getDate("postdate"));
+				dto.setVisitcount(rs.getInt("visitcount"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -140,4 +144,38 @@ public class BoardDAO3  {
 		}
 		return result;
 	}
+	//조회수 업데이트하기
+	public int visitcountUpdate(int num) {
+		con=DBConnection.getConnection();
+		//변수선언
+		int result=0;
+		//board테이블의 num컬럼값이 num인 행을 수정
+		//visitcount를1증가 
+		//int타입 변수리턴
+		//1.오라클접속 con생성
+		//2.쿼리작성, 쿼리객체
+		String query = "update board set visitcount=visitcount+1 where num=?";
+		
+		try {
+			//동적쿼리객체 생성
+			psmt = con.prepareStatement(query);
+			//첫번째 인파라미터(?)에 num할당 
+			psmt.setInt(1, num);
+			//3.쿼리실행 executeUpdate(): int타입 리턴 (변경된 행의 갯수) 
+			//executeQuery() : ResultSet타입 리턴(조회된 행)
+			//실행후 변경된 행의 갯수를 리턴 
+			result = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(con!=null && psmt!=null) {
+				DBConnection.close(con,psmt);
+			}
+		}
+		
+		return result;
+	}
+	
 }

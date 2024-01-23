@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import common.DBConnection;
 import common.JDBCConnect;
 
 public class BoardDAO extends JDBCConnect {
@@ -114,4 +115,36 @@ public class BoardDAO extends JDBCConnect {
 		}
 		return result;
 	}
+	//조회수 업데이트하기
+		public int visitcountUpdate(int num) {
+			//변수선언
+			int result=0;
+			//board테이블의 num컬럼값이 num인 행을 수정
+			//visitcount를1증가 
+			//int타입 변수리턴
+			//1.오라클접속 con생성
+			//2.쿼리작성, 쿼리객체
+			String query = "update board set visitcount=visitcount+1 where num=?";
+			
+			try {
+				//동적쿼리객체 생성
+				psmt = con.prepareStatement(query);
+				//첫번째 인파라미터(?)에 num할당 
+				psmt.setInt(1, num);
+				//3.쿼리실행 executeUpdate(): int타입 리턴 (변경된 행의 갯수) 
+				//executeQuery() : ResultSet타입 리턴(조회된 행)
+				//실행후 변경된 행의 갯수를 리턴 
+				result = psmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally {
+				if(con!=null && psmt!=null) {
+					DBConnection.close(con,psmt);
+				}
+			}
+			
+			return result;
+		}
 }

@@ -32,8 +32,28 @@ public class BoardController extends HttpServlet {
     		dao = new BoardDAO3();
     		List<BoardDTO> list = dao.selectList();
     		System.out.println("dddd");
+    		System.out.println(list.get(0).getVisitcount());
+    		System.out.println(list.get(1).getVisitcount());
+    		System.out.println(list.get(2).getVisitcount());
     		request.setAttribute("list", list);
     		request.getRequestDispatcher("/06bootstrap/board/list.jsp")
+    		.forward(request, response);
+    	//상세보기 페이지 요청 (get요청)
+    	//http://localhost:8090/GreenJsp2/board?cmd=view
+    	}else if(cmd.equals("view")) {
+    		String num = request.getParameter("num");
+    		//dao 객체 생성해서 할당 
+    		dao = new BoardDAO3();
+    		//조회수 업데이트 하고 결과를 updateresult할당 
+    		int updateresult = dao.visitcountUpdate(Integer.parseInt(num));
+    		System.out.println(updateresult);
+    		//getBoard()호출해서 BoardDTO타입 리턴 받음
+    	
+    		BoardDTO dto = dao.getBoard(Integer.parseInt(num));
+    		//request속성 추가 dto속성에 dto객체를 저장 
+    		request.setAttribute("dto", dto);
+    		//페이지 이동 
+    		request.getRequestDispatcher("/06bootstrap/board/view.jsp")
     		.forward(request, response);
     	}
     }

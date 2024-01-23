@@ -32,7 +32,7 @@
      			
      			 <tr>
 			        <td><%=b.getNum()%></td>
-			        <td><%=b.getTitle() %></td>
+			        <td><a href="/GreenJsp2/board?cmd=view&num=<%=b.getNum()%>"><%=b.getTitle() %></a></td>
 			        <td><%=b.getId() %></td>
 			        <td><%=b.getPostdate() %></td>
 			        <td><%=b.getVisitcount() %></td>
