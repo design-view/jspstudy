@@ -11,6 +11,7 @@ public class JSFunction {
 	public static void alertLocation(String msg, String url,HttpServletResponse res) {
 		
 		try {
+			res.setContentType("text/html; charset=utf-8");
 			PrintWriter out = res.getWriter();
 			String str = ""
 					   + "<script>"

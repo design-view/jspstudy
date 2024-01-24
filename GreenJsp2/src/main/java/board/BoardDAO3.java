@@ -14,10 +14,62 @@ import common.DBConnection;
 import common.JDBCConnect;
 
 public class BoardDAO3  {
-	Connection con;
+	Connection con=DBConnection.getConnection();
 	Statement stmt;
 	PreparedStatement psmt;
 	ResultSet rs;
+	//게시물의 개수반환하기
+	public int selectCount(String search) {
+		con=DBConnection.getConnection();
+		int totalCount = 0;
+		//게시물 수를 구하는 쿼리작성
+		String query = "select count(*) from board";
+		//매개변수의 값을 받지 못하면 null
+		if(search!=null) {
+			query += " where title like '%"+search+"%'";
+		}
+		//쿼리작성 쿼리객체생성
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			rs.next();
+			totalCount = rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(con, stmt, rs);
+		}
+		return totalCount;
+	}
+	//검색한 게시글 가져오기
+	public List<BoardDTO> searchList(String search){
+		con=DBConnection.getConnection();
+		List<BoardDTO> boardlist = new ArrayList<BoardDTO>();
+		String query = "select * from board where title like '%"+search+"%'";
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				dto.setNum(rs.getInt("num"));
+				dto.setId(rs.getString("id"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setPostdate(rs.getDate("postdate"));
+				dto.setVisitcount(rs.getInt("visitcount"));
+				boardlist.add(dto);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if(con!=null && stmt!=null && rs !=null) {
+				DBConnection.close(con,stmt,rs);
+			}
+		}
+		return boardlist;
+	}
 	//게시글 목록 가져오기
 	public List<BoardDTO> selectList(){
 		con=DBConnection.getConnection();
@@ -75,10 +127,10 @@ public class BoardDAO3  {
 	}
 	//게시글 추가하기 
 	public int insertBoard(String title, String content, String id ) {
+		System.out.println("하하하하하여기여기");
 		int result = 0;
 		//쿼리문 작성
-		String sql = "insert into board(num, title, content, id, visitcount) "
-				+ "values(seq_board_num.nextval, ?,?,?,0);";
+		String sql = "insert into board(num, title, content, id, visitcount) values(seq_board_num.nextval,?,?,?,0)";
 				
 		//쿼리수행
 		try{
@@ -88,10 +140,11 @@ public class BoardDAO3  {
 			psmt.setString(1,title);
 			psmt.setString(2,content);
 			psmt.setString(3,id);
+			System.out.println("하하하하하");
 			result = psmt.executeUpdate();   //변경된행의 갯수를 리턴
 		}
 		catch(Exception e){
-
+			
 		}finally {
 			if(con!=null && psmt!=null) {
 				DBConnection.close(con,psmt);

@@ -3,9 +3,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<%   List<BoardDTO> list = (List<BoardDTO>) request.getAttribute("list"); %>
+<%   
+ List<BoardDTO> list = (List<BoardDTO>) request.getAttribute("list"); 
+ int total = (Integer) request.getAttribute("total");
+%>
+<script>
+	function searchclick(){
+		//콘솔에 input에 담긴 value값 출력
+		let search = document.querySelector("#search").value;
+		location.href="/GreenJsp2/board?cmd=list&search="+search;
+	}
+</script>
 <div>
 	<h2>게시글 페이지 입니다.</h2>
+	<div>
+		<input name="search" id="search"/>
+		<button onclick="searchclick()">검색</button>
+	</div>
+	<p><%=total%></p>
 	<table class="table">
     <thead class="thead-dark">
       <tr>

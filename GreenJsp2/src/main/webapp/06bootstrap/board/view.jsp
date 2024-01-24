@@ -13,6 +13,31 @@
 	<p>내용<br/>
 		<%=dto.getContent() %>
 	</p>
+	<p>
+	<%
+		//로그인한 사용자가 이게시글의 id랑 동일할때 
+		//모든 속성은 object타입 
+		String sessionid = "";
+		if(session.getAttribute("userId")!=null){
+			sessionid = session.getAttribute("userId").toString();
+		}
+		
+		if(sessionid.equals(dto.getId())){
+	%>
+		<form method="post" action="/GreenJsp2/board?cmd=edit">
+		<input type="hidden" name="num" value="<%=dto.getNum()%>" />
+		<button type="submit" class="btn btn-primary">수정하기</button>
+		</form>
+		<br/>
+		<form method="post" action="/GreenJsp2/board?cmd=delete">
+		<input type="hidden" name="num" value="<%=dto.getNum()%>" />
+		<button type="submit" class="btn btn-primary">삭제하기</button>
+		</form>
+	<%		
+		}
+	%>
+	
+	</p>
 </div>
 <%@ include file="../include/footer.jsp" %>
 

@@ -39,6 +39,8 @@ E:\01-STUDY\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\13010
 \GreenJsp2\src\main\java
 E:\01-STUDY\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3941734517.index
 \GreenJsp\src\main\java
+E:\01-STUDY\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3627905873.index
+\GreenJsp2\src\main\java
 E:\01-STUDY\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\801050486.index
 \GreenJsp\src\main\java
 E:\01-STUDY\jspstudy\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1796527377.index
